@@ -13,10 +13,10 @@ public class Usuario {
 		System.out.println("3 - Aumentar o volume");
 		System.out.println("4 - Dimuir o volume");
 		System.out.println("5 - Escolher o canal");
+		Scanner input = new Scanner(System.in);
 		while (true) {
 
 			System.out.println("Escolha entre as opções 1/2/3/4/5: ");
-			Scanner input = new Scanner(System.in);
 			String option = input.nextLine();
 			if (option.equals("1") || option.equals("2") || option.equals("3") || option.equals("4")
 					|| option.equals("5")) {
@@ -57,18 +57,16 @@ public class Usuario {
 					}
 				}
 
-				catch (NumberFormatException e) {
+				catch (Exception e) {
 					System.out.println("Opção invalida, tente selecionar usando somente as opções acima: ");
 					continue;
-				}
-				finally {
-					if (input != null) {
-					input.close();
-				}}
+				} 
 			} else {
 				System.out.println("Opção invalida");
 			}
 		}
-        
+		if (input != null) {
+			input.close();
+		}
 	}
 }
