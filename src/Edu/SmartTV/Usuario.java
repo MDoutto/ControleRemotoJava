@@ -20,47 +20,50 @@ public class Usuario {
 			String option = input.nextLine();
 			if (option.equals("1") || option.equals("2") || option.equals("3") || option.equals("4")
 					|| option.equals("5")) {
-				try {
 
-					if (option.equals("1")) {
-						smartTv.ligar();
-						System.out.println("Sua TV foi ligada. ");
-					}
-
-					else if (option.equals("2")) {
-						smartTv.desligar();
-						System.out.println("Sua TV foi desligada. ");
-					}
-
-					else if (option.equals("3")) {
-						smartTv.aumentarVolume();
-						System.out.println("O volume da sua TV foi aumentado para : " + smartTv.volume);
-					}
-
-					else if (option.equals("4")) {
-						smartTv.diminuirVolume();
-						System.out.println("O volume da sua TV foi diminuido para : " + smartTv.volume);
-					}
-
-					else if (option.equals("5")) {
-						System.out.println("Qual canal você deseja: ");
-						int canalDesejado = input.nextInt();
-						smartTv.mudarCanal(canalDesejado);
-						System.out.println("Canal alterado para o : " + smartTv.canal);
-
-					}
-
-					System.out.println("Deseja realizar uma nova ação? (y/n): ");
-					String novaOpcao = input.next();
-					if (novaOpcao.equals("n")) {
-						break;
-					}
+				if (option.equals("1")) {
+					smartTv.ligar();
+					System.out.println("Sua TV foi ligada. ");
 				}
 
-				catch (Exception e) {
-					System.out.println("Opção invalida, tente selecionar usando somente as opções acima: ");
-					continue;
-				} 
+				else if (option.equals("2")) {
+					smartTv.desligar();
+					System.out.println("Sua TV foi desligada. ");
+				}
+
+				else if (option.equals("3")) {
+					smartTv.aumentarVolume();
+					System.out.println("O volume da sua TV foi aumentado para : " + smartTv.volume);
+				}
+
+				else if (option.equals("4")) {
+					smartTv.diminuirVolume();
+					System.out.println("O volume da sua TV foi diminuido para : " + smartTv.volume);
+				}
+
+				else if (option.equals("5")) {
+					boolean inputError = true;
+					while (inputError == true) {
+						try {
+							System.out.println("Qual canal você deseja: ");
+							int canalDesejado = input.nextInt();
+							smartTv.mudarCanal(canalDesejado);
+							inputError = false;
+							System.out.println("Canal alterado para o : " + smartTv.canal);
+						} catch (Exception e) {
+							System.out.println("Erro: " + e.getMessage());
+							input = new Scanner (System.in);
+						}
+					}
+
+				}
+
+				System.out.println("Deseja realizar uma nova ação? (y/n): ");
+				String novaOpcao = input.next();
+				if (novaOpcao.equals("n")) {
+					break;
+				}
+
 			} else {
 				System.out.println("Opção invalida");
 			}
